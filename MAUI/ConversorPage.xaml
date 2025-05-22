@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI.ConversorPage"
+             Title="Calculator">
+            
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+            <Label Text="Calculator"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold" />
+
+            <Entry x:Name="inputEntry"
+                   Placeholder="Input"
+                   FontSize="18"
+                   IsReadOnly="True" />
+
+            <!-- Keypad Size -->
+            <Grid ColumnSpacing="6" RowSpacing="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Numbers -->
+                <Button Text="7" Grid.Row="0" Grid.Column="0" Clicked="OnKeypadClicked"/>
+                <Button Text="8" Grid.Row="0" Grid.Column="1" Clicked="OnKeypadClicked"/>
+                <Button Text="9" Grid.Row="0" Grid.Column="2" Clicked="OnKeypadClicked"/>
+                
+                <Button Text="4" Grid.Row="1" Grid.Column="0" Clicked="OnKeypadClicked"/>
+                <Button Text="5" Grid.Row="1" Grid.Column="1" Clicked="OnKeypadClicked"/>
+                <Button Text="6" Grid.Row="1" Grid.Column="2" Clicked="OnKeypadClicked"/>
+                
+                <Button Text="1" Grid.Row="2" Grid.Column="0" Clicked="OnKeypadClicked"/>
+                <Button Text="2" Grid.Row="2" Grid.Column="1" Clicked="OnKeypadClicked"/>
+                <Button Text="3" Grid.Row="2" Grid.Column="2" Clicked="OnKeypadClicked"/>
+
+                <Button Text="AC" Grid.Row="3" Grid.Column="0" Clicked="OnClearClicked"/>
+                <Button Text="0" Grid.Row="3" Grid.Column="1" Clicked="OnKeypadClicked"/>
+                <Button Text="-" Grid.Row="3" Grid.Column="2" Clicked="OnKeypadClicked"/>
+
+                <Button Text="A" Grid.Row="0" Grid.Column="4" Clicked="OnKeypadClicked"/>
+                <Button Text="B" Grid.Row="0" Grid.Column="5" Clicked="OnKeypadClicked"/>
+                <Button Text="C" Grid.Row="1" Grid.Column="4" Clicked="OnKeypadClicked"/>
+                <Button Text="D" Grid.Row="1" Grid.Column="5" Clicked="OnKeypadClicked"/>
+                <Button Text="E" Grid.Row="2" Grid.Column="4" Clicked="OnKeypadClicked"/>
+                <Button Text="F" Grid.Row="2" Grid.Column="5" Clicked="OnKeypadClicked"/>
+            </Grid>
+
+            <!-- Conversion buttons -->
+            <VerticalStackLayout Spacing="5" Margin="0,20,0,0">
+                <Button Text="DecimalToBinary" Clicked="OnConvertClicked" CommandParameter="DecimalToBinary"/>
+                <Button Text="DecimalToTwoComplement" Clicked="OnConvertClicked" CommandParameter="DecimalToTwoComplement"/>
+                <Button Text="DecimalToOctal" Clicked="OnConvertClicked" CommandParameter="DecimalToOctal"/>
+                <Button Text="DecimalToHexadecimal" Clicked="OnConvertClicked" CommandParameter="DecimalToHexadecimal"/>
+                <Button Text="BinaryToDecimal" Clicked="OnConvertClicked" CommandParameter="BinaryToDecimal"/>
+                <Button Text="TwoComplementToDecimal" Clicked="OnConvertClicked" CommandParameter="TwoComplementToDecimal"/>
+                <Button Text="OctalToDecimal" Clicked="OnConvertClicked" CommandParameter="OctalToDecimal"/>
+                <Button Text="HexadecimalToDecimal" Clicked="OnConvertClicked" CommandParameter="HexadecimalToDecimal"/>
+            </VerticalStackLayout>
+
+            <Label x:Name="resultLabel" FontAttributes="Bold" FontSize="16" TextColor="#FF00FFC8" />
+
+            <Button Text="Operations" Clicked="OnOperationsClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
