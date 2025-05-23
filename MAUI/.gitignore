@@ -1,0 +1,40 @@
+# Ignore build results
+bin/
+obj/
+
+# Ignore VS user-specific files
+.vs/
+*.user
+*.suo
+
+# Ignore Rider IDE files
+.idea/
+*.sln.iml
+
+# Ignore Mac/Linux dotfiles
+.DS_Store
+*.swp
+
+# Ignore logs
+*.log
+
+# Ignore app data
+*.db
+*.sqlite
+*.db-journal
+
+# Ignore user CSV file
+users.csv
+
+# Ignore system artifacts
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore generated project files
+*.tmp
+*.bak
+
+# Ignore Maui cache
+**/AppPackages/
+**/AppPackagesTemp/
