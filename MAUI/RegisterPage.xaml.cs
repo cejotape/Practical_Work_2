@@ -27,6 +27,7 @@ namespace MAUI
             return users;
         }
 
+        // Save the users to the CSV file
         private void SaveUsers(List<User> users)
         {
             string filePath = "users.csv";
@@ -40,6 +41,7 @@ namespace MAUI
             writer.Close();
         }
 
+        // Validate the password according to the specified rules
         private bool IsValidPassword(string password)
         {
             return password.Length >= 8 &&
@@ -49,6 +51,7 @@ namespace MAUI
                    password.IndexOfAny("!@#€&%/".ToCharArray()) >= 0;
         }
 
+        // When the user clicks the "Register" button, this method is called.
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
             string name = nameEntry.Text;
@@ -56,6 +59,7 @@ namespace MAUI
             string password = passwordEntry.Text;
             string confirmPassword = confirmPasswordEntry.Text;
 
+            // Validate the input fields
             if (string.IsNullOrWhiteSpace(name) ||
                 string.IsNullOrWhiteSpace(username) ||
                 string.IsNullOrWhiteSpace(password) ||
@@ -65,30 +69,35 @@ namespace MAUI
                 return;
             }
 
+            // Name and username must be different
             if (name == username)
             {
                 await DisplayAlert("Error", "Name and username must be different.", "OK");
                 return;
             }
 
+            // Passwords must match
             if (password != confirmPassword)
             {
                 await DisplayAlert("Error", "Passwords do not match.", "OK");
                 return;
             }
 
+            // Password must meet the specified criteria
             if (!IsValidPassword(password))
             {
                 await DisplayAlert("Error", "Password must be at least 8 characters long and include uppercase, lowercase, number, and symbol between these !@#€&%/.", "OK");
                 return;
             }
 
+            // User must accept the privacy policy
             if (!termsCheckbox.IsChecked)
             {
                 await DisplayAlert("Error", "You must accept the privacy policy.", "OK");
                 return;
             }
 
+            // Check if the username already exists
             List<User> users = LoadUsers();
 
             for (int i = 0; i < users.Count; i++)

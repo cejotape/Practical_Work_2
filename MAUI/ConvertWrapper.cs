@@ -2,6 +2,7 @@ using oppguidedpw;
 
 namespace MAUI
 {
+    // This static class acts as a simplified interface to use the conversion classes
     public static class ConverterWrapper
     {
         public static string DecimalToBinary(string input)

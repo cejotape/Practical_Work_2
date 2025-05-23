@@ -5,19 +5,20 @@ namespace MAUI
         public OperationsPage()
         {
             InitializeComponent();
-            LoadUserData();
+            LoadUserData(); // This shows the user data when the page opens
         }
 
         private void LoadUserData()
         {
             string filePath = "users.csv";
-            string currentUsername = Preferences.Get("CurrentUser", "");
+            string currentUsername = Preferences.Get("CurrentUser", ""); // Get the current username from preferences
 
             if (File.Exists(filePath))
             {
                 StreamReader reader = new StreamReader(filePath);
                 string line = reader.ReadLine();
 
+                // Loop through the file until we find the current user
                 while (line != null)
                 {
                     User user = User.FromCsv(line);
@@ -51,7 +52,7 @@ namespace MAUI
 
         private void OnExitClicked(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
+            System.Diagnostics.Process.GetCurrentProcess().Kill(); // Close the app
         }
     }
 }

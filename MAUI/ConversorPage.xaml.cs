@@ -2,6 +2,7 @@ using oppguidedpw;
 
 namespace MAUI
 {
+    // This class represents the calculator page of the app.
     public partial class ConversorPage : ContentPage
     {
         public ConversorPage()
@@ -9,26 +10,28 @@ namespace MAUI
             InitializeComponent();
         }
 
-        // Increments the current user's operation count in the users.csv file.
+        // Increment the current user's operation count in the users.csv file.
         private void IncrementOperationCount()
         {
             string filePath = "users.csv";
             string username = Preferences.Get("CurrentUser", "");
 
             List<User> users = new List<User>();
+
+            // Load the users from the file
             if (File.Exists(filePath))
             {
                 StreamReader reader = new StreamReader(filePath);
                 string line = reader.ReadLine();
                 while (line != null)
                 {
-                    users.Add(User.FromCsv(line));
+                    users.Add(User.FromCsv(line)); // Convert each line to a User object
                     line = reader.ReadLine();
                 }
                 reader.Close();
             }
 
-            // Finds the current user and increment its count
+            // Find the current user and increment its count
             for (int i = 0; i < users.Count; i++)
             {
                 if (users[i].Username == username)
@@ -38,7 +41,7 @@ namespace MAUI
                 }
             }
 
-            // Saves the updated user list back to the file
+            // Save the updated user list back to the file
             StreamWriter writer = new StreamWriter(filePath, false);
             for (int i = 0; i < users.Count; i++)
             {
@@ -47,18 +50,21 @@ namespace MAUI
             writer.Close();
         }
 
+        // Event handlers for button clicks
         private void OnKeypadClicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
             inputEntry.Text += button.Text;
         }
 
+        // Clear the input and result labels
         private void OnClearClicked(object sender, EventArgs e)
         {
             inputEntry.Text = "";
             resultLabel.Text = "";
         }
 
+        // Handle the conversion when a button is clicked
         private async void OnConvertClicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -95,17 +101,20 @@ namespace MAUI
                         break;
                 }
 
+                // Increment the operation count and display the result
                 IncrementOperationCount();
                 resultLabel.Text = "Result: " + result;
             }
             catch
             {
+                // Handle any exceptions that occur during conversion and reset the fields
                 await DisplayAlert("Error", "Invalid input format or conversion error.", "OK");
                 inputEntry.Text = "";
                 resultLabel.Text = "";
             }
         }
 
+        // Navigate to the operations page
         private async void OnOperationsClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync(nameof(OperationsPage));

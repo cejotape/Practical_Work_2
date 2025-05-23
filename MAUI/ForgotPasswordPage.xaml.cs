@@ -3,7 +3,6 @@ namespace MAUI
     public partial class ForgotPasswordPage : ContentPage
     {
 
-
         public ForgotPasswordPage()
         {
             InitializeComponent();
@@ -29,6 +28,7 @@ namespace MAUI
             return users;
         }
 
+        // When the users clicks the "Recover Password" button, this method is called.
         private void OnRecoverClicked(object sender, EventArgs e)
         {
             string username = usernameEntry.Text;
